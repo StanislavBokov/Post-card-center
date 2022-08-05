@@ -1,6 +1,6 @@
 import {action, makeObservable, observable} from "mobx";
 
-type OrNull<T extends any> = null | T
+type OrNull<T> = null | T
 type ModalType = OrNull<'add-text' | 'add-img' | 'add-bg' | 'send-postcard' | 'send-postcard-success'>
 const modalsSet = new Set<ModalType>(['add-text' , 'add-img' , 'add-bg' , 'send-postcard' , 'send-postcard-success'])
 class ModalStore {
