@@ -4,4 +4,4 @@ class MainStore {
     modal = modalStore
 }
 
-export const mainStore = new MainStore()
+export const mainStore: MainStore = new MainStore()

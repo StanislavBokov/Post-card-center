@@ -1,5 +1,8 @@
 import {modalStore} from "./modal-store";
 describe('modalStore', () => {
+    afterAll(() => {
+        modalStore.setModal(null)
+    })
     it('should return object with activeModal property and setModal method', () => {
         expect(modalStore).toEqual(expect.objectContaining<Partial<typeof modalStore>>({activeModal: null}))
         expect(typeof modalStore.setModal).toEqual('function')
