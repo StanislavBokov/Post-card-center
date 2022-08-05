@@ -18,5 +18,4 @@ describe('App container', () => {
     const component = screen.getByTestId('footer');
     expect(component).toBeInTheDocument()
   });
-
 });
