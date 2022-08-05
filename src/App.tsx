@@ -19,6 +19,12 @@ function App() {
           Learn React
         </a>
       </header>
+      <main data-testid="main">
+        i am the main!!!
+      </main>
+      <footer data-testid="footer">
+        i am the footer!!!
+      </footer>
     </div>
   );
 }
