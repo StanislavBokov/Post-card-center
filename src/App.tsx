@@ -19,6 +19,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <main data-testid="main">
+        i am the main!!!
+      </main>
     </div>
   );
 }
