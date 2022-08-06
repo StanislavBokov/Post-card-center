@@ -3,46 +3,52 @@ import { Sidebar } from '@consta/uikit/Sidebar';
 import { Button } from '@consta/uikit/Button';
 import styles from './styles.module.scss'
 import { Text } from '@consta/uikit/Text';
+import {observer} from "mobx-react-lite";
+import {useToolbarOptions} from "./useToolbarOptions";
 
 
-export const Toolbar:FC = () => {
+export const Toolbar:FC = observer(() => {
+    const {openTextModal, openImgModal, openBgModal} = useToolbarOptions()
     return (
         <div data-testid="toolbar">
         <Sidebar
-            
+
             isOpen={true}
             position="left"
             hasOverlay={false}
             size="1/3"
-        >   
+        >
             <Sidebar.Content className={styles.content}>
                 <Text align="center" size="2xl">Выберете действие</Text>
-                <Button 
+                <Button
                     data-testid="btn-text"
-                    label="Текст" 
+                    label="Текст"
                     view="secondary"
                     size="l"
                     className={styles.btns}
                     width="full"
+                    onClick={openTextModal}
                 />
-                <Button 
+                <Button
                     data-testid="btn-background"
-                    label="Фон" 
+                    label="Фон"
                     view="secondary"
                     size="l"
                     className={styles.btns}
                     width="full"
+                    onClick={openBgModal}
                 />
-                <Button 
+                <Button
                     data-testid="btn-picture"
-                    label="Картинка" 
+                    label="Картинка"
                     view="secondary"
                     size="l"
                     className={styles.btns}
                     width="full"
+                    onClick={openImgModal}
                 />
-            </Sidebar.Content>       
-        </Sidebar>    
+            </Sidebar.Content>
+        </Sidebar>
         </div>
     )
-}
+})
