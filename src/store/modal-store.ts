@@ -7,7 +7,6 @@ class ModalStore {
     activeModal: ModalType = null
     setModal(modal: ModalType) {
         if (modalsSet.has(modal)) {
-            console.log(modal)
             this.activeModal = modal
         }
     }
