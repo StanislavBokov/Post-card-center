@@ -7,10 +7,12 @@ class ModalStore {
     activeModal: ModalType = null
     setModal(modal: ModalType) {
         if (modalsSet.has(modal)) {
+            console.log(modal)
             this.activeModal = modal
         }
     }
     constructor() {
+        this.setModal = this.setModal.bind(this)
         makeObservable(this, {
             activeModal: observable,
             setModal: action
