@@ -1,16 +1,17 @@
 import {modalStore} from "../../store/modal-store";
 import {useToolbarOptions} from "./useToolbarOptions";
-import {renderHook, waitFor} from "@testing-library/react";
+import {act, renderHook, waitFor} from "@testing-library/react";
 import {StoreProvider} from "../../store-provider/StoreProvider";
 import {FC, PropsWithChildren} from "react";
 
 describe('useToolbarOptions', () => {
+    afterAll(() => {
+        modalStore.setModal(null);
+    })
     it('should set active modal to add-text', () => {
-        const spy = jest.spyOn(modalStore, 'setModal')
         const wrapper: FC<PropsWithChildren<{}>> = ({ children }) => (
             <StoreProvider>{children}</StoreProvider>
         )
-        spy.mockImplementationOnce(() => {})
         const {
         result: {
             current: {
@@ -18,15 +19,13 @@ describe('useToolbarOptions', () => {
                 }
             }
         } = renderHook(() => useToolbarOptions(), {wrapper})
-        openTextModal()
-        expect(spy).toBeCalledWith('add-text')
+        act(() => openTextModal())
+        expect(modalStore.activeModal).toEqual('add-text')
     })
     it('should set active modal to add-img', () => {
-        const spy = jest.spyOn(modalStore, 'setModal')
         const wrapper: FC<PropsWithChildren<{}>> = ({ children }) => (
             <StoreProvider>{children}</StoreProvider>
         )
-        spy.mockImplementationOnce(() => {})
         const {
             result: {
                 current: {
@@ -34,16 +33,14 @@ describe('useToolbarOptions', () => {
                 }
             }
         } = renderHook(() => useToolbarOptions(), {wrapper})
-        openImgModal()
-        expect(spy).toBeCalledWith('add-img')
+        act(() => openImgModal())
+        expect(modalStore.activeModal).toEqual('add-img')
     })
 
     it('should set active modal to add-bg', () => {
-        const spy = jest.spyOn(modalStore, 'setModal')
         const wrapper: FC<PropsWithChildren<{}>> = ({ children }) => (
             <StoreProvider>{children}</StoreProvider>
         )
-        spy.mockImplementationOnce(() => {})
         const {
             result: {
                 current: {
@@ -51,8 +48,9 @@ describe('useToolbarOptions', () => {
                 }
             }
         } = renderHook(() => useToolbarOptions(), {wrapper})
-        openBgModal()
-        expect(spy).toBeCalledWith('add-bg')
+        act(() => openBgModal())
+        expect(modalStore.activeModal).toEqual('add-bg')
+
     })
 
 })
