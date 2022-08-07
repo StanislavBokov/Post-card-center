@@ -6,13 +6,11 @@ import { Text } from '@consta/uikit/Text';
 import {observer} from "mobx-react-lite";
 import {useToolbarOptions} from "./useToolbarOptions";
 
-
 export const Toolbar:FC = observer(() => {
     const {openTextModal, openImgModal, openBgModal} = useToolbarOptions()
     return (
         <div data-testid="toolbar">
         <Sidebar
-
             isOpen={true}
             position="left"
             hasOverlay={false}
