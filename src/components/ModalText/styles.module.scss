@@ -1,0 +1,17 @@
+@import '../../assets/styles/index.scss';
+
+
+.modalTextContainer {
+    @include flexbox(space-between, flex-start, column);
+    margin-top: 10px;
+    height: 200px;
+
+    .textField {
+        @include flexbox(center, flex-start, column);
+        
+        .errorMessage {
+            padding-top: 5px;
+            color: $colorRed;
+        }
+    }
+}
