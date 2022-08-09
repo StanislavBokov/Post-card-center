@@ -3,13 +3,18 @@ import { TextField } from '@consta/uikit/TextField';
 import { Button } from '@consta/uikit/Button';
 import { validate, isEmptyErrors } from './helper';
 import styles from './styles.module.scss';
+import { observer } from 'mobx-react-lite';
+import { useStoreContext } from '../../store-provider/StoreContext';
+import { useModalTextOptions } from './useModalTextOptions'
 
 
-export const ModalText:FC = () => {
+export const ModalText:FC = observer(() => {
+    const { modal: { setModal }} = useStoreContext()
+    const { value, setTextField } = useModalTextOptions()
     type Data = { [key:string]: { value: string, isBlur: boolean } }
-
+  
     const [data, setData] = useState<Data>({
-        text: { value: '', isBlur: false },
+        text: { value, isBlur: false },
       });
     const [errors, setErrors] = useState({ text: '' })
     
@@ -29,6 +34,10 @@ export const ModalText:FC = () => {
     validate(data, setErrors)
     }, [data])
 
+    const handleSubmit = () => {
+      setTextField(data.text.value)
+      setModal(null)
+    }
     return (
         <div className={styles.modalTextContainer}>
             <div className={styles.textField}>
@@ -41,6 +50,7 @@ export const ModalText:FC = () => {
                 onBlur={handleBlur}
                 status={data.text.isBlur && errors.text && "alert"}
                 size="l"
+                data-testid="input"
             />
            {data.text.isBlur && <span className={styles.errorMessage}>{errors.text}</span>}
         </div>
@@ -50,8 +60,9 @@ export const ModalText:FC = () => {
             label="OK"
             width="default"
             disabled={isEmptyErrors(errors)}
+            onClick={handleSubmit}
+            data-testid="button-submit"
       />
         </div>
     )
-
-}
+})
