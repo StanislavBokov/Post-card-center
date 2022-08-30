@@ -1,0 +1,6 @@
+{
+    "port": 5566,
+    "mongoUri": "mongodb+srv://Stanislav:villiValla@cluster0.mo3ercg.mongodb.net/?retryWrites=true&w=majority",
+    "accessSecret": "super secret from backend",
+    "refreshSecret": "super refresh key"
+}
